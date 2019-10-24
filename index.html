@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div><span id="prev">Prev</span> <span id="next">Next</span></div>
+    <div id="question"></div>
+    <span id="show">Show Answer</span>
+    <div id="answer" class="hide"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var index = 0;
+        var data = [
+          {
+            question: 'Questions 1',
+            answer: 'Answer 1'
+          },
+          {
+            question: 'Questions 2',
+            answer: 'Answer 2'
+          },
+          {
+            question: 'Questions 3',
+            answer: 'Answer 3'
+          }
+        ];
+
+        $('#next').on('click', function() {
+          if (index <= data.length - 1) index++;
+          update(index);
+        });
+
+        $('#prev').on('click', function() {
+          if (index > 0) index--;
+          update(index);
+        });
+
+        $('#show').on('click', function() {
+          $('#answer').removeClass();
+        });
+
+        update(index);
+
+        function update(index) {
+          $('#answer').addClass('hide');
+          $('#question').text(data[index].question);
+          $('#answer').text(data[index].answer);
+        }
+      });
+    </script>
+  </body>
+</html>
